@@ -48,38 +48,44 @@
 				</li>
 			</ul>
 		</nav>
-		<section id="about_intro">
-			<article>
-				<h3> What is Funderly?</h3>
-				<p> Funderly is an online charity platform. It is similar to sites like 'go fund me' and 'pledge me'. The site allows people wanting a charity to do so and make an account while also allowing donors to donate without an account.<p>
+		<div class="big-grid-container">
+		
+			<div class="grid-item grid-item-1">
+				<article>
+					<h3> What is Funderly?</h3>
+					<p> Funderly is an online charity platform. It is similar to sites like 'go fund me' and 'pledge me'. The site allows people wanting a charity to do so and make an account while also allowing donors to donate without an account.<p>
+					
+					<p> For more info check out the ABOUT page linked below and in the nav bar. </p>
 				
-				<p> For more info check out the ABOUT page linked below and in the nav bar. </p>
+					<a href="about.html" class="button2">About</a>	
 				
-				<a href="about.html" class="button2">About</a>
-				
-			</article>
-		</section>
-		<section id="donate">
-			<p></p>
-			<div class="search_block">
+				</article>
+			</div>
+			<div class="grid-item grid-item-2">
+				<p></p>
 				<a href="search.html" class="button2">Donate Now!</a>
 				<input type="text" placeholder="Search..">
+				<!--<div class="search_block">
+					<a href="search.html" class="button2">Donate Now!</a>
+					<input type="text" placeholder="Search..">
+				</div>-->
 			</div>
-		</section>
 		
-		<section id="top_fund">
-			<h3>Top 5 Charities</h3>
-			<div class="grid-container">
-				<div class="grid-item">charity</div>
-				<a href="charity.html" class="grid-button">Pledge!</a>
-				<div class="grid-item">charity</div>
-				<a href="charity.html" class="grid-button">Pledge!</a>
-				<div class="grid-item">charity</div>
-				<a href="charity.html" class="grid-button">Pledge!</a>
-				<div class="grid-item">charity</div>
-				<a href="charity.html" class="grid-button">Pledge!</a>
-				<div class="grid-item">charity</div>
-				<a href="charity.html" class="grid-button">Pledge!</a>
-			
+			<div class="grid-item grid-item-3">
+				<h3>Top 5 Charities</h3>
+				<div class="grid-container">
+					<div class="small-grid-item">charity</div>
+					<a href="charity.html" class="grid-button">Pledge!</a>
+					<div class="small-grid-item">charity</div>
+					<a href="charity.html" class="grid-button">Pledge!</a>
+					<div class="small-grid-item">charity</div>
+					<a href="charity.html" class="grid-button">Pledge!</a>
+					<div class="small-grid-item">charity</div>
+					<a href="charity.html" class="grid-button">Pledge!</a>
+					<div class="small-grid-item">charity</div>
+					<a href="charity.html" class="grid-button">Pledge!</a>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
