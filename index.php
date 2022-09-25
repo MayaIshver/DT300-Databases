@@ -10,7 +10,16 @@
 		echo "Database is not connected.";
 		exit();
 	}
-
+	
+	$top5_query = "SELECT charities.charity_name, charities.charity_id, SUM(donors.pledge) AS pledge 
+					FROM `donors`, `charities`
+					WHERE charities.charity_id = donors.charity_id 
+					GROUP BY charities.charity_name, charities.charity_id
+					ORDER BY pledge DESC
+					LIMIT 0,5 ";
+	$top5_result = mysqli_query($dbcon, $top5_query);
+	//$top5_record = mysqli_fetch_assoc($top5_result);
+	
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +32,7 @@
 	<body>
 		<header>
 			<h1> Funderly </h1>
-			<a href="login.html" class="button1">Login/sign-up</a>
+			<a href="fundraiser.php" class="button1"> Create A Fundraiser </a>
 		</header>
 		<!-- hamburger -->
 		<input type="checkbox" id="navi-toggle" class="checkbox" />
@@ -35,16 +44,17 @@
 		<nav class="nav">
 			<ul class="list">
 				<li class="item">
-					<a class="link"> Search </a>
+					<a href="index.php" class="link"> Home </a>
 				</li>
 				<li class="item">
-					<a class="link"> Login </a>
+					<a href="search.php" class="link"> Search </a>
 				</li>
 				<li class="item">
-					<a class="link"> About </a>
+					<a href="fundraiser.php" class="link"> Create A Fundraiser </a>
 				</li>
 				<li class="item">
-					<a class="link"> My Account </a>
+					<a href="about.php"class="link"> About </a>
+
 				</li>
 			</ul>
 		</nav>
@@ -74,16 +84,14 @@
 			<div class="grid-item grid-item-3">
 				<h3>Top 5 Charities</h3>
 				<div class="grid-container">
-					<div class="small-grid-item">charity</div>
-					<a href="charity.html" class="grid-button">Pledge!</a>
-					<div class="small-grid-item">charity</div>
-					<a href="charity.html" class="grid-button">Pledge!</a>
-					<div class="small-grid-item">charity</div>
-					<a href="charity.html" class="grid-button">Pledge!</a>
-					<div class="small-grid-item">charity</div>
-					<a href="charity.html" class="grid-button">Pledge!</a>
-					<div class="small-grid-item">charity</div>
-					<a href="charity.html" class="grid-button">Pledge!</a>
+					<?php 
+						while ($row = mysqli_fetch_assoc($top5_result)) {
+							echo "<div class='small-grid-item'>".$row['charity_name']."</div>";
+							echo "<a href='charity.php?charity_id=".$row['charity_id']."'class='grid-button'>Pledge!</a>";
+							
+							}
+					?>
+					
 				</div>
 			</div>
 		</div>

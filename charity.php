@@ -17,9 +17,9 @@
 		$charity_id = 1;
 	}
 
-	$query = "SELECT * FROM charities WHERE charities.charity_id = '".$charity_id."'";;
-	$query_result  = mysqli_query($dbcon, $query);
-	$query_record = mysqli_fetch_assoc($query_result);
+	//$query = "SELECT * FROM charities WHERE charities.charity_id = '".$charity_id."'";;
+	//$query_result  = mysqli_query($dbcon, $query);
+	//$query_record = mysqli_fetch_assoc($query_result);
 
 
 ?>
@@ -46,49 +46,55 @@
 		<nav class="nav">
 			<ul class="list">
 				<li class="item">
+					<a href="index.php" class="link"> Home </a>
+				</li>
+				<li class="item">
 					<a href="search.php" class="link"> Search </a>
 				</li>
 				<li class="item">
-					<a href="login.php" class="link"> Login </a>
+					<a href="fundraiser.php" class="link"> Create A Fundraiser </a>
 				</li>
 				<li class="item">
 					<a href="about.php"class="link"> About </a>
-				</li>
-				<li class="item">
-					<a href="account.php" class="link"> My Account </a>
+
 				</li>
 			</ul>
 		</nav>
 		
 		<article> 
-		<?php
+			<?php
+				$id = $_GET['charity_id'];
+				$charity_id = intval($id);
+				//echo $charity_id;
+				echo "<br>";
+				$charity_query = "SELECT * FROM charities WHERE charity_id='".$charity_id."'";
+				//echo $charity_query;
+				$charity_result = mysqli_query($dbcon, $charity_query);
+				//echo $charity_result;
+				$charity_record = mysqli_fetch_assoc($charity_result);
+
+
+				echo " " . $charity_record['charity_name'] . "<br>";
+				echo "" . $charity_record['blurb' ]. "<br>";
+
+
+			?>
+
+			<section id="pledge">
+				<h2> Donate Now! </h2>
+				<form action="insert.php" method="post">
+					First Name: <input type="text" name="f_name"><br>
+					Last Name: <input type="text" name="l_name"><br>
+					Email: <input type="text" name="email"><br>
+					Pledge amount: <input type ="integer" name="pledge"><br>
+					<input type="hidden" name="charity_id" value="<?php echo $charity_id; ?>">
+
+					<input type ="submit" value="Insert">
+
+				</form> 
+			</section>
 			
-			$charity_query = "SELECT * FROM charities WHERE charity_id='".$_GET['charity_id'].'"';
-			$charity_result = mysqli_query($dbcon, $charity_query);
-			$charity_record = mysqli_fetch_assoc($charity_result);
-								   
-			
-			echo " " . $charity_record['charity_name'] . "<br>";
-			echo "" . $charity_record['blurb' ]. "<br>";
-						
-		
-		?>
-			
-		</article>
-		<section id="pledge">
-			<h2> Donate Now! </h2>
-			<form action="insert.php" method="post">
-				First Name: <input type="text" name="f_name"><br>
-				Last Name: <input type="text" name="l_name"><br>
-				Email: <input type="text" name="email"><br>
-				Pledge amount: <input type ="text" name=pledge><br>
-				<?php
-					echo "<type=hidden name=account_id value'".$_GET['charity_id']."'>";
-				?>
-				<input type ="submit" value="Insert">
-				
-			</form> 
-		</section>
-			
+
+		</article>	
 	</body>
 </html>
