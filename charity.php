@@ -16,11 +16,13 @@
 	} else{
 		$charity_id = 1;
 	}
-
+	
+	echo $charity_id;
 	//$query = "SELECT * FROM charities WHERE charities.charity_id = '".$charity_id."'";;
 	//$query_result  = mysqli_query($dbcon, $query);
 	//$query_record = mysqli_fetch_assoc($query_result);
-
+	
+	
 
 ?>
 
@@ -64,6 +66,14 @@
 		<article> 
 			<?php
 				$id = $_GET['charity_id'];
+				$amount_pledged = "SELECT charities.charity_name, charities.charity_id, SUM(donors.pledge) AS pledge 
+					FROM `donors`, `charities`
+					WHERE charities.charity_id = donors.charity_id 
+					AND charities.charity_id ='".$charity_id."'
+					GROUP BY charities.charity_name, charities.charity_id";
+				$pledged_result = mysqli_query($dbcon, $amount_pledged);
+				$pledged_record = mysqli_fetch_assoc($pledged_result);
+			
 				$charity_id = intval($id);
 				//echo $charity_id;
 				echo "<br>";
@@ -73,9 +83,9 @@
 				//echo $charity_result;
 				$charity_record = mysqli_fetch_assoc($charity_result);
 
-
-				echo " " . $charity_record['charity_name'] . "<br>";
-				echo "" . $charity_record['blurb' ]. "<br>";
+				echo "Amount Pledged: ".$pledged_record['pledge']."<br>";
+				echo "Charity Name: " . $charity_record['charity_name'] . "<br>";
+				echo "Charity Blurb: " . $charity_record['blurb' ]. "<br>";
 
 
 			?>
