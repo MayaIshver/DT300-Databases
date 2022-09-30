@@ -57,26 +57,45 @@ $DOB = $_POST['DOB'];
 $charity_name = $_POST['charity_name'];
 $blurb = $_POST['blurb'];
 $don_goal = $_POST['don_goal'];
+$account_id = 0;
+$donor_id = 1;
 
 
+echo "<br>";
 
 $insert_fundraiser = "INSERT INTO fundraisers (f_name, l_name, email, birth_date) VALUES ('$f_name','$l_name','$email','$DOB')";
-$insert_charity = "INSERT INTO charities (charity_name, blurb, don_goal) VALUES ('$charity_name','$blurb','$don_goal')";
+
+echo "<br>";
+
 
 if(!mysqli_query($dbcon, $insert_fundraiser))
 {
-	echo "Error: " . $insert_donor . "<br>" . mysqli_error($dbcon);
+	echo "<br>";
+	echo "Error: " . $insert_fundraiser . "<br>" . mysqli_error($dbcon);
 	echo "Not Inserted";
+	echo "<br>";
 }
 else 
 {
+	echo "<br>";
 	echo 'Inserted';
+	echo "<br>";
 }
+
+$account_id = $dbcon->insert_id;
+echo $account_id;
+echo "<br>";
+
+$insert_charity = "INSERT INTO charities (charity_name, blurb, don_goal, account_id, donor_id) VALUES ('$charity_name','$blurb','$don_goal','$account_id','$donor_id')";
+echo "<br>";
+
 
 if(!mysqli_query($dbcon, $insert_charity))
 {
-	echo "Error: " . $insert_donor . "<br>" . mysqli_error($dbcon);
+	echo "<br>";
+	echo "Error: " . $insert_charity . "<br>" . mysqli_error($dbcon);
 	echo "Not Inserted";
+	echo "<br>";
 }
 else 
 {
