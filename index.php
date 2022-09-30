@@ -73,8 +73,13 @@
 			</div>
 			<div class="grid-item grid-item-2">
 				<p></p>
-				<a href="search.html" class="button2">Donate Now!</a>
-				<input type="text" placeholder="Search..">
+				<a href="search.php" class="button2">Donate Now!</a>
+				<form action="search.php" method="post">
+					<input type="text" name="search" placeholder="Search..">
+					<input type='submit' id='search' value='search'>
+				</form>
+				
+				
 				<!--<div class="search_block">
 					<a href="search.html" class="button2">Donate Now!</a>
 					<input type="text" placeholder="Search..">
