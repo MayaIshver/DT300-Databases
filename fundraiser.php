@@ -55,12 +55,12 @@
 			<form action="insert.php" method="post">
 					First Name: <input type="text" name="f_name"><br>
 					Last Name: <input type="text" name="l_name"><br>
-					Email: <input type="text" name="email"><br>
+					Email: <input type="email" name="email"><br>
 					Date Of Birth: <input type ="text" name="DOB"><br>
 					Charity Name: <input type="text" name="charity_name"><br>
-					Blurb: <input type="text" name="blurb"><br>
+					Blurb: <input type="text" name="blurb" maxlength="500"><br>
 					Category: <select name='category' id='category'>
-						<option value="Children's health">Children's health</option>
+						<option value="Children">Children</option>
 						<option value="General health">General health</option>
 						<option value="Mental health">Mental health</option>
 						<option value="Third-world">Third-world</option>

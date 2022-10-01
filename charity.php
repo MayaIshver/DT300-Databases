@@ -36,7 +36,7 @@
 	<body>
 		<header>
 			<h1> Funderly </h1>
-			<a href="login.php" class="button1">Login/sign-up</a>
+			<a href="fundraiser.php" class="button1"> Create A Fundraiser </a>
 		</header>
 		<!-- hamburger -->
 		<input type="checkbox" id="navi-toggle" class="checkbox" />
@@ -66,7 +66,7 @@
 		<article> 
 			<?php
 				$id = $_GET['charity_id'];
-				$amount_pledged = "SELECT charities.charity_name, charities.charity_id, SUM(donors.pledge) AS pledge 
+				$amount_pledged = "SELECT charities.charity_id, SUM(donors.pledge) AS pledge 
 					FROM `donors`, `charities`
 					WHERE charities.charity_id = donors.charity_id 
 					AND charities.charity_id ='".$charity_id."'
@@ -77,7 +77,7 @@
 				$charity_id = intval($id);
 				//echo $charity_id;
 				echo "<br>";
-				$charity_query = "SELECT * FROM charities WHERE charity_id='".$charity_id."'";
+				$charity_query = "SELECT charities.charity_name, charities.blurb, fundraisers.f_name, fundraisers.l_name FROM charities, fundraisers WHERE charities.charity_id='".$charity_id."' AND charities.account_id = fundraisers.account_id";
 				//echo $charity_query;
 				$charity_result = mysqli_query($dbcon, $charity_query);
 				//echo $charity_result;
@@ -86,6 +86,7 @@
 				echo "Amount Pledged: ".$pledged_record['pledge']."<br>";
 				echo "Charity Name: " . $charity_record['charity_name'] . "<br>";
 				echo "Charity Blurb: " . $charity_record['blurb' ]. "<br>";
+				echo "Made By: ".$charity_record['f_name' ]." ". $charity_record['l_name' ]."<br>";
 
 
 			?>
