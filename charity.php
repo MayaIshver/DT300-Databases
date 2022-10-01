@@ -18,18 +18,18 @@
 	}
 	
 	echo $charity_id;
-	//$query = "SELECT * FROM charities WHERE charities.charity_id = '".$charity_id."'";;
-	//$query_result  = mysqli_query($dbcon, $query);
-	//$query_record = mysqli_fetch_assoc($query_result);
+	$charity_query = "SELECT charities.charity_name, charities.blurb, fundraisers.f_name, fundraisers.l_name FROM charities, fundraisers WHERE charities.charity_id='".$charity_id."' AND charities.account_id = fundraisers.account_id";
 	
+	$charity_result = mysqli_query($dbcon, $charity_query);
 	
+	$charity_record = mysqli_fetch_assoc($charity_result);
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+	<html lang="en">
 	<head>
-		<title> Funderly </title>
+		<title>Funderly</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
@@ -56,10 +56,6 @@
 				<li class="item">
 					<a href="fundraiser.php" class="link"> Create A Fundraiser </a>
 				</li>
-				<li class="item">
-					<a href="about.php"class="link"> About </a>
-
-				</li>
 			</ul>
 		</nav>
 		
@@ -77,16 +73,12 @@
 				$charity_id = intval($id);
 				//echo $charity_id;
 				echo "<br>";
-				$charity_query = "SELECT charities.charity_name, charities.blurb, fundraisers.f_name, fundraisers.l_name FROM charities, fundraisers WHERE charities.charity_id='".$charity_id."' AND charities.account_id = fundraisers.account_id";
-				//echo $charity_query;
-				$charity_result = mysqli_query($dbcon, $charity_query);
-				//echo $charity_result;
-				$charity_record = mysqli_fetch_assoc($charity_result);
+				
 
-				echo "Amount Pledged: ".$pledged_record['pledge']."<br>";
-				echo "Charity Name: " . $charity_record['charity_name'] . "<br>";
-				echo "Charity Blurb: " . $charity_record['blurb' ]. "<br>";
-				echo "Made By: ".$charity_record['f_name' ]." ". $charity_record['l_name' ]."<br>";
+				echo "<h3>Amount Pledged: </h3> $".$pledged_record['pledge']."<br>";
+				echo "<h3>Charity Name: </h3>" . $charity_record['charity_name'] . "<br>";
+				echo "<h3>Charity Blurb: </h3>" . $charity_record['blurb' ]. "<br>";
+				echo "<h3>Made By: </h3>".$charity_record['f_name' ]." ". $charity_record['l_name' ]."<br>";
 
 
 			?>
@@ -94,13 +86,13 @@
 			<section id="pledge">
 				<h2> Donate Now! </h2>
 				<form action="insert.php" method="post">
-					First Name: <input type="text" name="f_name"><br>
-					Last Name: <input type="text" name="l_name"><br>
-					Email: <input type="email" name="email"><br>
-					Pledge amount: <input type ="integer" name="pledge"><br>
+					First Name: <input type="text" name="f_name" maxlength="25" required><br>
+					Last Name: <input type="text" name="l_name" maxlength="30" required><br>
+					Email: <input type="email" name="email" maxlength="34" required><br>
+					Pledge amount: <input type ="number" name="pledge" required><br>
 					<input type="hidden" name="charity_id" value="<?php echo $charity_id; ?>">
 
-					<input type ="submit" value="Insert">
+					<input type ="submit" value="Make donation">
 
 				</form> 
 			</section>

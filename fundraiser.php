@@ -43,29 +43,26 @@
 				<li class="item">
 					<a href="fundraiser.php" class="link"> Create A Fundraiser </a>
 				</li>
-				<li class="item">
-					<a href="about.php"class="link"> About </a>
-
-				</li>
+				
 			</ul>
 		</nav>
 		<article>
 			<h2> Enter your charity information here</h2>
 			<p id="smalltext">You can not change this once you have sumbitted it </p>
 			<form action="insert.php" method="post">
-					First Name: <input type="text" name="f_name"><br>
-					Last Name: <input type="text" name="l_name"><br>
-					Email: <input type="email" name="email"><br>
-					Date Of Birth: <input type ="text" name="DOB"><br>
-					Charity Name: <input type="text" name="charity_name"><br>
-					Blurb: <input type="text" name="blurb" maxlength="500"><br>
-					Category: <select name='category' id='category'>
+					First Name: <input type="text" name="f_name" maxlength="20" required><br>
+					Last Name: <input type="text" name="l_name" maxlength="30" required><br>
+					Email: <input type="email" name="email" maxlength="34" required><br>
+					Date Of Birth (dd.mm.yyyy): <input type ="date" name="DOB" required><br>
+					Charity Name: <input type="text" name="charity_name" maxlength="45" required><br>
+					Blurb: <input type="text" name="blurb" maxlength="500" required><br>
+					Category: <select name='category' id='category' required>
 						<option value="Children">Children</option>
 						<option value="General health">General health</option>
 						<option value="Mental health">Mental health</option>
 						<option value="Third-world">Third-world</option>
 					</select>
-					Donation Goal: <input type ="integer" name="don_goal"><br>
+					Donation Goal: <input type ="number" name="don_goal" required><br>
 					
 
 					<input type ="submit" value="Create Fundraiser">
