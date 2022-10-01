@@ -52,10 +52,7 @@
 				<li class="item">
 					<a href="fundraiser.php" class="link"> Create A Fundraiser </a>
 				</li>
-				<li class="item">
-					<a href="about.php"class="link"> About </a>
-
-				</li>
+				
 			</ul>
 		</nav>
 		<div class="big-grid-container">
@@ -65,9 +62,7 @@
 					<h3> What is Funderly?</h3>
 					<p> Funderly is an online charity platform. It is similar to sites like 'go fund me' and 'pledge me'. The site allows people wanting a charity to do so and make an account while also allowing donors to donate without an account.<p>
 					
-					<p> For more info check out the ABOUT page linked below and in the nav bar. </p>
-				
-					<a href="about.html" class="button2">About</a>	
+
 				
 				</article>
 			</div>
