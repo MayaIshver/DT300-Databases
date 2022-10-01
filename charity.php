@@ -95,7 +95,7 @@
 				<form action="insert.php" method="post">
 					First Name: <input type="text" name="f_name"><br>
 					Last Name: <input type="text" name="l_name"><br>
-					Email: <input type="email" name="email"><br>
+					Email: <input type="text" name="email"><br>
 					Pledge amount: <input type ="integer" name="pledge"><br>
 					<input type="hidden" name="charity_id" value="<?php echo $charity_id; ?>">
 
