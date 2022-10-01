@@ -47,8 +47,9 @@
 			</ul>
 		</nav>
 		<article>
+			<!--Form so that users can start a charity of their own-->
 			<h2> Enter your charity information here</h2>
-			<p id="smalltext">You can not change this once you have sumbitted it </p>
+			<p id="smalltext">You can not change this once you have submitted it! </p>
 			<form action="insert.php" method="post">
 					First Name: <input type="text" name="f_name" maxlength="20" required><br>
 					Last Name: <input type="text" name="l_name" maxlength="30" required><br>
@@ -57,6 +58,7 @@
 					Charity Name: <input type="text" name="charity_name" maxlength="45" required><br>
 					Blurb: <input type="text" name="blurb" maxlength="500" required><br>
 					Category: <select name='category' id='category' required>
+						<option value="">Choose:</option>
 						<option value="Children">Children</option>
 						<option value="General health">General health</option>
 						<option value="Mental health">Mental health</option>

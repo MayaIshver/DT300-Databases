@@ -18,7 +18,7 @@
 					ORDER BY pledge DESC
 					LIMIT 0,5 ";
 	$top5_result = mysqli_query($dbcon, $top5_query);
-	//$top5_record = mysqli_fetch_assoc($top5_result);
+	//Gets the 5 charities with the most amount pledged 
 	
 ?>
 
@@ -55,8 +55,9 @@
 				
 			</ul>
 		</nav>
+		<!-- I wanted the index page to have three components so I used a grid to achieve this-->
 		<div class="big-grid-container">
-		
+			<!-- Each grid element is styled differently hence the grid numbers-->
 			<div class="grid-item grid-item-1">
 				<article>
 					<h3> What is Funderly?</h3>
@@ -69,25 +70,24 @@
 			<div class="grid-item grid-item-2">
 				<p></p>
 				<a href="search.php" class="button2">Donate Now!</a>
+				<!-- search form connects to search page -->
 				<form action="search.php" method="post">
 					<input type="text" name="search" placeholder="Search..">
 					<input type='submit' id='search' value='search'>
 				</form>
 				
 				
-				<!--<div class="search_block">
-					<a href="search.html" class="button2">Donate Now!</a>
-					<input type="text" placeholder="Search..">
-				</div>-->
+				
 			</div>
 		
 			<div class="grid-item grid-item-3">
 				<h3>Top 5 Charities</h3>
 				<div class="grid-container">
 					<?php 
+					//Displays the top 5 charites in a smaller grid inside the first grid
 						while ($row = mysqli_fetch_assoc($top5_result)) {
 							echo "<div class='small-grid-item'>".$row['charity_name']."</div>";
-							echo "<a href='charity.php?charity_id=".$row['charity_id']."'class='grid-button'>Pledge!</a>";
+							echo "<a href='charity.php?charity_id=".$row['charity_id']."' class='grid-button'>Pledge!</a>";
 							
 							}
 					?>

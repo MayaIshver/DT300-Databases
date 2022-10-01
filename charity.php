@@ -17,12 +17,19 @@
 		$charity_id = 1;
 	}
 	
-	echo $charity_id;
+	//Selects charity name, blurb, and who made the charity
 	$charity_query = "SELECT charities.charity_name, charities.blurb, fundraisers.f_name, fundraisers.l_name FROM charities, fundraisers WHERE charities.charity_id='".$charity_id."' AND charities.account_id = fundraisers.account_id";
 	
 	$charity_result = mysqli_query($dbcon, $charity_query);
 	
 	$charity_record = mysqli_fetch_assoc($charity_result);
+
+	//Calculates the total amount pledged to the charity 
+	$amount_pledged = "SELECT charities.charity_id, SUM(donors.pledge) AS pledge 
+					FROM `donors`, `charities`
+					WHERE charities.charity_id = donors.charity_id 
+					AND charities.charity_id ='".$charity_id."'
+					GROUP BY charities.charity_name, charities.charity_id";
 
 ?>
 
@@ -61,20 +68,17 @@
 		
 		<article> 
 			<?php
-				$id = $_GET['charity_id'];
-				$amount_pledged = "SELECT charities.charity_id, SUM(donors.pledge) AS pledge 
-					FROM `donors`, `charities`
-					WHERE charities.charity_id = donors.charity_id 
-					AND charities.charity_id ='".$charity_id."'
-					GROUP BY charities.charity_name, charities.charity_id";
+			
+				
+				
 				$pledged_result = mysqli_query($dbcon, $amount_pledged);
 				$pledged_record = mysqli_fetch_assoc($pledged_result);
 			
-				$charity_id = intval($id);
-				//echo $charity_id;
+				//$charity_id = intval($id);
+				
 				echo "<br>";
 				
-
+				//Displays the information
 				echo "<h3>Amount Pledged: </h3> $".$pledged_record['pledge']."<br>";
 				echo "<h3>Charity Name: </h3>" . $charity_record['charity_name'] . "<br>";
 				echo "<h3>Charity Blurb: </h3>" . $charity_record['blurb' ]. "<br>";
@@ -82,7 +86,7 @@
 
 
 			?>
-
+			<!--The form for donors to donate money to the charity-->
 			<section id="pledge">
 				<h2> Donate Now! </h2>
 				<form action="insert.php" method="post">
